@@ -3,7 +3,7 @@
 </script>
 
 <main>
-	<AsciiDriver rowAmount={24} colAmount={22}></AsciiDriver>
+	<AsciiDriver rowAmount={40} colAmount={20}></AsciiDriver>
 </main>
 
 <style>
@@ -11,7 +11,7 @@
 		background-color: #151515;
 		color: #fff;
 		font-family: monospace;
-		font-size: 22px;
+		font-size: 30pt;
 		/* white-space: pre-wrap; */
 	}
 </style>

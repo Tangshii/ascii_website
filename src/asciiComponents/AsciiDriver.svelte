@@ -97,7 +97,7 @@
 		background-color: #151515;
 		color: #fff;
 		font-family: monospace;
-		font-size: 22px;
+		font-size: 30pt;
 		/* white-space: pre-wrap; */
 	}
 	pre {
