@@ -5,7 +5,7 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 	let asciiGrid = AsciiGrid(rowAmount, colAmount);
 	let asciiGuy = AsciiGuy(rowAmount / 2, colAmount / 2);
 	let isCatched = false;
-	let frameSpeed = 10;
+	let frameSpeed = 2;
 
 	function getString() {
 		return asciiGrid.getString();
@@ -222,7 +222,7 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 		// paints ball at new postition
 		ball.x += ball.xSpeed;
 		ball.y += ball.ySpeed;
-		asciiGrid.replaceCharAt2d(' ', prevX, prevY);
+		asciiGrid.replaceCharAt2d('.', prevX, prevY);
 		asciiGrid.replaceCharAt2d('○', ball.x, ball.y);
 		// checkForCatchedBall();
 
@@ -241,24 +241,20 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 			// top boundary
 			ball.inverseYSpeed();
 			asciiGrid.replaceCharAt2d(' ', ball.x, ball.y - 1);
-			frameSpeed = 8;
 		} else if (ball.y >= colAmount - 1) {
 			// bottom boundary
 			ball.inverseYSpeed();
 			asciiGrid.replaceCharAt2d(' ', ball.x, ball.y + 1);
-			frameSpeed = 8;
 		}
 		// seperate for corners
 		if (ball.x <= 1) {
 			// left boundary
 			ball.inverseXSpeed();
 			asciiGrid.replaceCharAt2d(' ', ball.x - 1, ball.y);
-			frameSpeed = 8;
 		} else if (ball.x >= rowAmount - 2) {
 			// right boundary
 			ball.inverseXSpeed();
 			asciiGrid.replaceCharAt2d(' ', ball.x + 1, ball.y);
-			frameSpeed = 8;
 		}
 	}
 
@@ -284,7 +280,6 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 				ball.ySpeed = 0;
 				break;
 		}
-		frameSpeed = 8;
 		onTick(); // need this to get out of bounds
 		isCatched = false;
 	}
