@@ -16,7 +16,7 @@
 
 	onMount(() => {
 		let frameCount = 0;
-		function loop(timestamp: number) {
+		function loop() {
 			frameCount++;
 			if (frameCount % asciiGame.getFrameSpeed() == 0) {
 				asciiGame.onTick();
