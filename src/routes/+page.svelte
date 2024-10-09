@@ -1,5 +1,4 @@
 <script lang="ts">
-	import AsciiControls from '../asciiComponents/AsciiControls.svelte';
 	import AsciiDriver from '../asciiComponents/AsciiDriver.svelte';
 </script>
 
