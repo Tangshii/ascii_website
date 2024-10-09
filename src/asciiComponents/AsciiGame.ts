@@ -5,7 +5,7 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 	let asciiGrid = AsciiGrid(rowAmount, colAmount);
 	let asciiGuy = AsciiGuy(rowAmount / 2, colAmount / 2);
 	let isCatched = false;
-	let frameSpeed = 2;
+	let frameSpeed = 6;
 
 	function getString() {
 		return asciiGrid.getString();
