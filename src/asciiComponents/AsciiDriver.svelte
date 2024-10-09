@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AsciiGame from './AsciiGame';
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
 	export let rowAmount;
