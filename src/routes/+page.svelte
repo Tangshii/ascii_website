@@ -7,6 +7,6 @@
 </main>
 
 <style>
-	.change {
+	.change2 {
 	}
 </style>
