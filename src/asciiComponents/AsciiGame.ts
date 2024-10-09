@@ -222,9 +222,15 @@ function AsciiGame(rowAmount: number, colAmount: number, asciiGuyUpdateCallback:
 		// paints ball at new postition
 		ball.x += ball.xSpeed;
 		ball.y += ball.ySpeed;
-		asciiGrid.replaceCharAt2d('.', prevX, prevY);
+		asciiGrid.replaceCharAt2d(' ', prevX, prevY);
 		asciiGrid.replaceCharAt2d('○', ball.x, ball.y);
-		// checkForCatchedBall();
+		checkForCatchedBall();
+
+		// &#9650;
+		// &#9654;
+		// &#9660;
+		// &#9664;
+		// &#9679;
 
 		if (asciiGrid.checkIfBordersEmpty() && !didWin) {
 			asciiGrid.replaceStringAt2d('YOU WIN', rowAmount / 2 - 3, colAmount / 2);

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import AsciiGame from './AsciiGame';
-	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
 	export let rowAmount;
@@ -24,43 +23,88 @@
 			}
 			window.requestAnimationFrame(loop);
 		}
-		var lastRender = 0;
 		window.requestAnimationFrame(loop);
 
-		let isLeftPressed = false;
-		let isRightPressed = false;
-		let isUpPressed = false;
-		let isDownPressed = false;
+		let startX = 0;
+		let startY = 0;
+		let dragX = 0;
+		let dragY = 0;
+
+		document.addEventListener('touchstart', (e) => {
+			startX = e.touches[0].clientX;
+			startY = e.touches[0].clientY;
+		});
+
+		document.addEventListener('touchmove', (e) => {
+			let prevX = dragX;
+			let prevY = dragY;
+			dragX = e.changedTouches[0].clientX;
+			dragY = e.changedTouches[0].clientY;
+			const diffX = dragX - prevX;
+			const diffY = dragY - prevY;
+			if (Math.abs(diffX) > Math.abs(diffY)) {
+				if (diffX > 3) {
+					// Swipe right
+					stopDown();
+					stopUp();
+					stopLeft();
+
+					startRight();
+				} else if (diffX < -3) {
+					// Swipe left
+					stopDown();
+					stopUp();
+					stopRight();
+
+					startLeft();
+				}
+			} else {
+				if (diffY > 3) {
+					// Swipe down
+					stopUp();
+					stopLeft();
+					stopRight();
+
+					startDown();
+				} else if (diffY < -3) {
+					// Swipe up
+					stopDown();
+					stopLeft();
+					stopRight();
+
+					startUp();
+				}
+			}
+		});
+
+		document.addEventListener('touchend', (e) => {
+			const diffX = startX - e.changedTouches[0].clientX;
+			const diffY = startY - e.changedTouches[0].clientY;
+			if (Math.abs(diffX) + Math.abs(diffY) <= 6) {
+				asciiGame.throwBall();
+			}
+			stopDown();
+			stopUp();
+			stopLeft();
+			stopRight();
+		});
 
 		document.addEventListener('keydown', (event) => {
 			switch (event.key) {
 				case 'ArrowLeft':
-					if (!isLeftPressed) {
-						isLeftPressed = true;
-						asciiGame.startMoveLeft();
-					}
+					startLeft();
 					break;
 				case 'ArrowRight':
-					if (!isRightPressed) {
-						isRightPressed = true;
-						asciiGame.startMoveRight();
-					}
+					startRight();
 					break;
 				case 'ArrowDown':
-					if (!isDownPressed) {
-						isDownPressed = true;
-						asciiGame.startMoveDown();
-					}
+					startDown();
 					break;
 				case 'ArrowUp':
-					if (!isUpPressed) {
-						isUpPressed = true;
-						asciiGame.startMoveUp();
-					}
+					startUp();
 					break;
 				case ' ':
 					asciiGame.throwBall();
-
 					break;
 			}
 		});
@@ -68,28 +112,69 @@
 		document.addEventListener('keyup', (event) => {
 			switch (event.key) {
 				case 'ArrowLeft':
-					isLeftPressed = false;
-					asciiGame.stopMoveLeft();
+					stopLeft();
 					break;
 				case 'ArrowRight':
-					isRightPressed = false;
-					asciiGame.stopMoveRight();
+					stopRight();
 					break;
 				case 'ArrowDown':
-					isDownPressed = false;
-					asciiGame.stopMoveDown();
+					stopDown();
 					break;
 				case 'ArrowUp':
-					isUpPressed = false;
-					asciiGame.stopMoveUp();
+					stopUp();
 					break;
 			}
 		});
 	});
+
+	let isLeftPressed = false;
+	let isRightPressed = false;
+	let isUpPressed = false;
+	let isDownPressed = false;
+	function startUp() {
+		if (!isUpPressed) {
+			isUpPressed = true;
+			asciiGame.startMoveUp();
+		}
+	}
+	function startDown() {
+		if (!isDownPressed) {
+			isDownPressed = true;
+			asciiGame.startMoveDown();
+		}
+	}
+	function startLeft() {
+		if (!isLeftPressed) {
+			isLeftPressed = true;
+			asciiGame.startMoveLeft();
+		}
+	}
+	function startRight() {
+		if (!isRightPressed) {
+			isRightPressed = true;
+			asciiGame.startMoveRight();
+		}
+	}
+	function stopUp() {
+		isUpPressed = false;
+		asciiGame.stopMoveUp();
+	}
+	function stopDown() {
+		isDownPressed = false;
+		asciiGame.stopMoveDown();
+	}
+	function stopLeft() {
+		isLeftPressed = false;
+		asciiGame.stopMoveLeft();
+	}
+	function stopRight() {
+		isRightPressed = false;
+		asciiGame.stopMoveRight();
+	}
 </script>
 
 <main>
-	<pre>{string}</pre>
+	<pre class="unselectable">{string}</pre>
 </main>
 
 <style>
@@ -97,8 +182,16 @@
 		background-color: #151515;
 		color: #fff;
 		font-family: monospace;
-		font-size: 30pt;
+		font-size: 30px;
 		/* white-space: pre-wrap; */
+	}
+	.unselectable {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	}
 	pre {
 		display: flex;
