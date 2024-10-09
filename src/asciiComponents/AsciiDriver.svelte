@@ -198,7 +198,7 @@
 		background-color: #151515;
 		color: #fff;
 		font-family: 'Courier New', monospace;
-		font-size: 30pt;
+		font-size: 20pt;
 		/* white-space: pre-wrap; */
 	}
 	:global(htmml),
