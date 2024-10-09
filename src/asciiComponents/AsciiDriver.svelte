@@ -188,7 +188,7 @@
 	}
 	:global(htmml),
 	:global(body) {
-		overscroll-behavior-y: contain;
+		touch-action: none;
 	}
 	.unselectable {
 		-webkit-touch-callout: none;
