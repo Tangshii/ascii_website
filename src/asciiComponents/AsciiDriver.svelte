@@ -44,14 +44,14 @@
 			const diffX = dragX - prevX;
 			const diffY = dragY - prevY;
 			if (Math.abs(diffX) > Math.abs(diffY)) {
-				if (diffX > 3) {
+				if (diffX > 6) {
 					// Swipe right
 					stopDown();
 					stopUp();
 					stopLeft();
 
 					startRight();
-				} else if (diffX < -3) {
+				} else if (diffX < -6) {
 					// Swipe left
 					stopDown();
 					stopUp();
@@ -60,14 +60,14 @@
 					startLeft();
 				}
 			} else {
-				if (diffY > 3) {
+				if (diffY > 6) {
 					// Swipe down
 					stopUp();
 					stopLeft();
 					stopRight();
 
 					startDown();
-				} else if (diffY < -3) {
+				} else if (diffY < -6) {
 					// Swipe up
 					stopDown();
 					stopLeft();
@@ -81,7 +81,7 @@
 		document.addEventListener('touchend', (e) => {
 			const diffX = startX - e.changedTouches[0].clientX;
 			const diffY = startY - e.changedTouches[0].clientY;
-			if (Math.abs(diffX) + Math.abs(diffY) <= 6) {
+			if (Math.abs(diffX) + Math.abs(diffY) <= 12) {
 				asciiGame.throwBall();
 			}
 			stopDown();
@@ -182,9 +182,13 @@
 	:global(body) {
 		background-color: #151515;
 		color: #fff;
-		font-family: monospace;
+		font-family: 'Courier New', monospace;
 		font-size: 30px;
 		/* white-space: pre-wrap; */
+	}
+	:global(htmml),
+	:global(body) {
+		overscroll-behavior-y: contain;
 	}
 	.unselectable {
 		-webkit-touch-callout: none;
