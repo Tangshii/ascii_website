@@ -28,31 +28,39 @@
 
 		let startX = 0;
 		let startY = 0;
-		let dragX = 0;
-		let dragY = 0;
+		let dragLocked = false;
 
 		document.addEventListener('touchstart', (e) => {
 			startX = e.touches[0].clientX;
 			startY = e.touches[0].clientY;
+			dragLocked = false;
 		});
 
 		document.addEventListener('touchmove', (e) => {
-			let prevX = dragX;
-			let prevY = dragY;
-			dragX = e.changedTouches[0].clientX;
-			dragY = e.changedTouches[0].clientY;
-			const diffX = dragX - prevX;
-			const diffY = dragY - prevY;
+			let dragX = e.changedTouches[0].clientX;
+			let dragY = e.changedTouches[0].clientY;
+			const diffX = dragX - startX;
+			const diffY = dragY - startY;
+			if (dragLocked) {
+				return;
+			}
+			// console.log('diffX: ' + diffX + ' diffY: ' + diffY);
+
 			if (Math.abs(diffX) > Math.abs(diffY)) {
-				if (diffX > 6) {
+				if (diffX > 30) {
 					// Swipe right
+					console.log('RIGHT');
+					dragLocked = true;
 					stopDown();
 					stopUp();
 					stopLeft();
 
 					startRight();
-				} else if (diffX < -6) {
+				} else if (diffX < -30) {
 					// Swipe left
+					console.log('LEFt');
+
+					dragLocked = true;
 					stopDown();
 					stopUp();
 					stopRight();
@@ -60,15 +68,21 @@
 					startLeft();
 				}
 			} else {
-				if (diffY > 6) {
+				if (diffY > 30) {
 					// Swipe down
+					console.log('DOWN');
+
+					dragLocked = true;
 					stopUp();
 					stopLeft();
 					stopRight();
 
 					startDown();
-				} else if (diffY < -6) {
+				} else if (diffY < -30) {
 					// Swipe up
+					console.log('UP');
+
+					dragLocked = true;
 					stopDown();
 					stopLeft();
 					stopRight();
@@ -79,6 +93,7 @@
 		});
 
 		document.addEventListener('touchend', (e) => {
+			dragLocked = false;
 			const diffX = startX - e.changedTouches[0].clientX;
 			const diffY = startY - e.changedTouches[0].clientY;
 			if (Math.abs(diffX) + Math.abs(diffY) <= 12) {
@@ -183,7 +198,7 @@
 		background-color: #151515;
 		color: #fff;
 		font-family: 'Courier New', monospace;
-		font-size: 30px;
+		font-size: 30pt;
 		/* white-space: pre-wrap; */
 	}
 	:global(htmml),
