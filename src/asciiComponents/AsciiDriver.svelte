@@ -41,9 +41,9 @@
 			let dragY = e.changedTouches[0].clientY;
 			const diffX = dragX - startX;
 			const diffY = dragY - startY;
-			if (dragLocked) {
-				return;
-			}
+			// if (dragLocked) {
+			// 	return;
+			// }
 			// console.log('diffX: ' + diffX + ' diffY: ' + diffY);
 
 			if (Math.abs(diffX) > Math.abs(diffY)) {
