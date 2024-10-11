@@ -198,7 +198,6 @@
 		background-color: #151515;
 		color: #fff;
 		font-size: 20pt;
-		white-space: pre-wrap;
 	}
 	:global(htmml),
 	:global(body) {
