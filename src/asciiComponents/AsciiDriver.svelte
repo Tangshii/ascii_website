@@ -215,6 +215,6 @@
 	pre {
 		display: flex;
 		justify-content: center;
-		font-family: 'Roboto Mono';
+		font-family: 'Cousine';
 	}
 </style>
