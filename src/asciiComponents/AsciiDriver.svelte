@@ -199,7 +199,7 @@
 		color: #fff;
 		font-family: monospace !important;
 		font-size: 20pt;
-		/* white-space: pre-wrap; */
+		white-space: pre-wrap;
 	}
 	:global(htmml),
 	:global(body) {
