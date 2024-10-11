@@ -215,5 +215,6 @@
 		display: flex;
 		justify-content: center;
 		font-family: 'Roboto Mono';
+		line-height: 1.2em;
 	}
 </style>
