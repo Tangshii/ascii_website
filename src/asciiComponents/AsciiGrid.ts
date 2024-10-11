@@ -25,8 +25,10 @@ function AsciiGrid(rowAmount: number, colAmount: number) {
 			replaceCharAt2d('-', i, colAmount);
 			bordersCount += 2;
 		}
-		replaceCharAt2d(' ', 0, 0);
-		replaceCharAt2d(' ', 0, colAmount);
+		replaceCharAt2d('┌', 0, 0);
+		replaceCharAt2d('└', 0, colAmount);
+		replaceCharAt2d('┐', rowAmount, 0);
+		replaceCharAt2d('┘', rowAmount, colAmount);
 		bordersCount -= 2;
 	}
 
