@@ -197,7 +197,7 @@
 	:global(body) {
 		background-color: #151515;
 		color: #fff;
-		font-family: 'Courier New', monospace;
+		font-family: monospace !important;
 		font-size: 20pt;
 		/* white-space: pre-wrap; */
 	}

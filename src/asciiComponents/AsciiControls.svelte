@@ -33,7 +33,7 @@
 	.font {
 		background-color: #151515;
 		color: #fff;
-		font-family: monospace;
+		/* font-family: monospace; */
 		font-size: 40px;
 	}
 </style>
