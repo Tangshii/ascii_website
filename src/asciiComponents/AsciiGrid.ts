@@ -21,8 +21,8 @@ function AsciiGrid(rowAmount: number, colAmount: number) {
 		}
 
 		for (let i = 0; i < rowAmount - 1; i++) {
-			replaceCharAt2d('―', i, 0);
-			replaceCharAt2d('―', i, colAmount);
+			replaceCharAt2d('-', i, 0);
+			replaceCharAt2d('-', i, colAmount);
 			bordersCount += 2;
 		}
 		replaceCharAt2d(' ', 0, 0);
