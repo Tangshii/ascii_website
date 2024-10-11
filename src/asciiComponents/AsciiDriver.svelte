@@ -216,5 +216,6 @@
 	pre {
 		display: flex;
 		justify-content: center;
+		font-family: monospace !important;
 	}
 </style>
