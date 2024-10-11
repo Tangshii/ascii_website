@@ -197,7 +197,6 @@
 	:global(body) {
 		background-color: #151515;
 		color: #fff;
-		font-family: monospace !important;
 		font-size: 20pt;
 		white-space: pre-wrap;
 	}
@@ -216,6 +215,6 @@
 	pre {
 		display: flex;
 		justify-content: center;
-		font-family: monospace !important;
+		font-family: monospace;
 	}
 </style>
