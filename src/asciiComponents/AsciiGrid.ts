@@ -27,8 +27,8 @@ function AsciiGrid(rowAmount: number, colAmount: number) {
 		}
 		replaceCharAt2d('┌', 0, 0);
 		replaceCharAt2d('└', 0, colAmount);
-		replaceCharAt2d('┐', rowAmount, 0);
-		replaceCharAt2d('┘', rowAmount, colAmount);
+		replaceCharAt2d('┐', rowAmount - 1, 0);
+		replaceCharAt2d('┘', rowAmount - 1, colAmount);
 		bordersCount -= 2;
 	}
 
